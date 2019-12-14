@@ -3,29 +3,24 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include "Monedero.h"
 
 Monedero::Monedero(): monedero(){
-  UnidadMonetaria Uncentimo(1,"cent");
-  this -> unidesMonetarias.push_back(Uncentimo);
-  UnidadMonetaria Doscentimo(2,"cents");
-  this -> unidesMonetarias.push_back(Doscentimo);
-  UnidadMonetaria cincocentimo(5,"cents");
-  this -> unidesMonetarias.push_back(cincocentimo);
-  UnidadMonetaria diescentimo(10,"cents");
-  this -> unidesMonetarias.push_back(diescentimo);
-  UnidadMonetaria veintecentimo(20,"cents");
-  this -> unidesMonetarias.push_back(veintecentimo);
-  UnidadMonetaria Cincuentacentimo(50,"cents");
-  this -> unidesMonetarias.push_back(Cincuentacentimo);
-  UnidadMonetaria Uneuro(1,"euro");
-  this -> unidesMonetarias.push_back(Uneuro);
-  UnidadMonetaria Doseuros(2,"euros");
-  this -> unidesMonetarias.push_back(Doseuros);
-  UnidadMonetaria Cincoeuros(5,"euros");
-  this -> unidesMonetarias.push_back(Doseuros);
-  UnidadMonetaria Dieseuros(10,"euros");
-  this -> unidesMonetarias.push_back(Doseuros);
+ std::ifstream readfile("../data/euros.data");
+ if (readfile.is_open()) {
+   char cantidad[5];
+   char unidad[50];
+   while (!readfile.eof()) {
+     readfile >> cantidad >> unidad;
+     UnidadMonetaria moneda(std::stoi(cantidad), unidad);
+     this->unidesMonetarias.push_back(moneda);
+   }
+   readfile.close();
+ } else {
+   std::cout<<"Error en la carga de monedas\n";
+   exit(1);
+ }
 }
 std::list<std::pair<int, UnidadMonetaria>> Monedero::SuplirCantidad(double cantidad) {
   cantidad = eurosacentimos(cantidad);
