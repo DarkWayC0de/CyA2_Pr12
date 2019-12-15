@@ -17,8 +17,7 @@ class Monedero {
   void mostrarmonedas(std::list<std::pair<int,UnidadMonetaria>> listaMoenedas);
  private:
   std::vector<UnidadMonetaria> unidesMonetarias;
-  std::vector<std::pair<int,UnidadMonetaria>> monedero;
-  int eurosacentimos(double euros);
+  int unidadasubunidad(double euros);
 };
 
 #endif //PR12_SRC_MONEDERO_MONEDERO_H_

@@ -2,9 +2,14 @@
 #include "Monedero/Monedero.h"
 
 int main() {
+
   Monedero cartera;
-  auto dinero = cartera.SuplirCantidad(3.23);
+  double  cantidad;
+  std::cout<<"Introduce la cantidad a calcular: ";
+  std::cin>>cantidad;
+  std::cout<<"Para "<<cantidad<<" se puede obtener con ";
+  auto dinero = cartera.SuplirCantidad(cantidad);
   cartera.mostrarmonedas(dinero);
-  std::cout << "Hello, World!" << std::endl;
+  std::cout << std::endl;
   return 0;
 }

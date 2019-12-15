@@ -6,8 +6,11 @@
 #include <fstream>
 #include "Monedero.h"
 
-Monedero::Monedero(): monedero(){
- std::ifstream readfile("../data/euros.data");
+
+
+Monedero::Monedero(){
+  const char NOMBRE_ARCHIVO[30] = "../data/euro.data";
+ std::ifstream readfile(NOMBRE_ARCHIVO);
  if (readfile.is_open()) {
    char cantidad[5];
    char unidad[50];
@@ -23,12 +26,13 @@ Monedero::Monedero(): monedero(){
  }
 }
 std::list<std::pair<int, UnidadMonetaria>> Monedero::SuplirCantidad(double cantidad) {
-  cantidad = eurosacentimos(cantidad);
+  const char UNIDAD[30] = "euro";
+  cantidad = unidadasubunidad(cantidad);
   std::list<std::pair<int,UnidadMonetaria>> solucion;
   for (int i = this ->unidesMonetarias.size()-1 ; i >= 0 && cantidad > 0; --i) {
     int moneda = this->unidesMonetarias[i].getUnidad().first;
-    if(this -> unidesMonetarias[i].getUnidad().second.find("euro")!=std::string::npos){
-      moneda = eurosacentimos(moneda);
+    if(this -> unidesMonetarias[i].getUnidad().second.find(UNIDAD)!=std::string::npos){
+      moneda = unidadasubunidad(moneda);
     }
     if (cantidad / moneda >= 1){
       std::pair<int,UnidadMonetaria> pareja;
@@ -41,11 +45,12 @@ std::list<std::pair<int, UnidadMonetaria>> Monedero::SuplirCantidad(double canti
   }
   return solucion;
 }
-int Monedero::eurosacentimos(double euros){
-  return (int)(euros*100);
+int Monedero::unidadasubunidad(double unidades){
+  return (int)(unidades*100);
 }
 void Monedero::mostrarmonedas(std::list<std::pair<int, UnidadMonetaria>> listaMoenedas) {
+
   for(auto i = listaMoenedas.begin(); i!= listaMoenedas.end(); ++i){
-    std::cout<< i->first <<" euros de "<<i->second.getUnidad().first<<" "<<i->second.getUnidad().second<<" ";
+    std::cout<< i->first <<" de "<<i->second.getUnidad().first<<" "<<i->second.getUnidad().second<<" ";
   }
 }
