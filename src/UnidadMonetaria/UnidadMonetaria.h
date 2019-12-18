@@ -11,11 +11,11 @@ class UnidadMonetaria {
  public:
   UnidadMonetaria() = default;
   ~UnidadMonetaria()= default;
-  const std::pair<int, std::string> &getUnidad() const;
-  void setUnidad(const std::pair<int, std::string> &unidad);
-  UnidadMonetaria(int valor, const char simbolo[]);
+  const std::pair<double, std::string> &getUnidad() const;
+  void setUnidad(const std::pair<double, std::string> &unidad);
+  UnidadMonetaria(double valor, const char simbolo[]);
  private:
-  std::pair<int,std::string> Unidad;
+  std::pair<double,std::string> Unidad;
 };
 
 #endif //PR12_SRC_UNIDADMONETARIA_UNIDADMONETARIA_H_

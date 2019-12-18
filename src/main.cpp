@@ -2,7 +2,6 @@
 #include "Monedero/Monedero.h"
 
 int main() {
-
   Monedero cartera;
   double  cantidad;
   std::cout<<"Introduce la cantidad a calcular: ";

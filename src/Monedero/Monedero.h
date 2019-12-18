@@ -13,11 +13,11 @@ class Monedero {
  public:
   Monedero();
   ~Monedero() = default;
-  std::list<std::pair<int,UnidadMonetaria>> SuplirCantidad(double cantidad);
-  void mostrarmonedas(std::list<std::pair<int,UnidadMonetaria>> listaMoenedas);
+  std::list<std::pair<double,UnidadMonetaria>> SuplirCantidad(double cantidad);
+  void mostrarmonedas(std::list<std::pair<double,UnidadMonetaria>> listaMoenedas);
  private:
   std::vector<UnidadMonetaria> unidesMonetarias;
-  int unidadasubunidad(double euros);
+  double unidadasubunidad(double euros);
 };
 
 #endif //PR12_SRC_MONEDERO_MONEDERO_H_
